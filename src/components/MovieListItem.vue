@@ -2,7 +2,7 @@
 <template>
     <div class="w-56 mr-4 mt-6 rounded shadow-md">
         <router-link
-        :to="movie + `${movieList.movie.id}`"
+        :to="`movie/${movieList.movie.id}`"
         class="h-80">
             <img class="object-fit h-80 w-46 rounded"
                 :src="`https://image.tmdb.org/t/p/w500` + movieList.movie.poster_path" alt="">

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import MovieSinglePage from '../views/MovieSinglePage.vue'
 import Favourite from '../views/Favourite.vue'
 
 Vue.use(VueRouter)
@@ -15,6 +16,11 @@ const routes = [
     path: '/favourite',
     name: 'favourite',
     component: Favourite
+  },
+  {
+    path: '/movie/:id',
+    name: 'MovieSinglePage',
+    component: MovieSinglePage
   },
 
 ]

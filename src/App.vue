@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <nav class="bg-red-200">asd
-      <router-link class="bg-gray-200" to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <nav class="flex flex-row">
+      <div class="left">
+        <router-link to="/">Home</router-link>
+        <router-link to="/favourite">Favourite</router-link>
+      </div>
+      <div class="right">Search</div>
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 

@@ -2,6 +2,7 @@
 import { mapActions } from "vuex";
 import Loading from '../components/Loading.vue'
 export default {
+    name:"MovieSinglePage",
     components: {
         Loading,
     },
@@ -20,12 +21,7 @@ export default {
         ...mapActions("tmdb", ["MOVIE_SIMILAR"]),
         ...mapActions("tmdb", ["MOVIE_REVIEWS"]),
 
-        async routerLink(id) {
-            this.isLoading = true
-            this.$router.push(`/movie/${id}`)
-            this.getMovieData()
-            this.isLoading = false
-        },
+
         async getMovieData() {
             this.movie = await this.MOVIE_ID(this.$route.params.id)
             this.movie_credits = await this.MOVIE_CREDITS(this.$route.params.id)
@@ -33,10 +29,16 @@ export default {
             this.movie_reviews = await this.MOVIE_REVIEWS(this.$route.params.id)
         }
     },
-    async created() {
+    async mounted() {
+        this.isLoading = true
         await this.getMovieData()
         this.isLoading = false
     },
+    watch: { 
+     '$route.params.id': function() {
+        this.getMovieData()
+      }
+}
 }
 </script>
 
@@ -82,13 +84,13 @@ export default {
                     <div>
                         <h1 class="flex mb-8 font-bold text-2xl">Similar </h1>
                         <div class="flex flex-row" v-for="similar in movie_similar" :key="similar.id">
-                            <div class="mb-4 text-slate-200">
-
-
-                                <img class="w-16 h-16 mb-4 rounded-full" @click="routerLink(similar.id)"
+                            <router-link 
+                            :to="`/movie/${similar.id}`"
+                            class="mb-4 text-slate-200">
+                                <img class="w-16 h-16 mb-4 rounded-full"
                                     :src="`https://image.tmdb.org/t/p/w500` + similar.poster_path" alt="">
                                 <div class="flex w-32">{{similar.original_title.substring(0, 15)}}</div>
-                            </div>
+                            </router-link>
                         </div>
                     </div>
                     <div class="ml-16">

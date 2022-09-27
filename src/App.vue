@@ -1,11 +1,23 @@
+<script>
+  import Search from './components/Search.vue'
+  export default {
+    components: {
+      Search
+    }
+
+  }
+</script>
 <template>
   <div id="app">
-    <nav class="flex flex-row">
-      <div class="left">
+    <nav class="flex flex-row justify-between px-40">
+      <div class="left flex justify-between w-40">
         <router-link to="/">Home</router-link>
         <router-link to="/favourite">Favourite</router-link>
       </div>
-      <div class="right">Search</div>
+      <div class="right">
+        <Search />
+      </div>
+      <div></div>
     </nav>
     <router-view />
   </div>

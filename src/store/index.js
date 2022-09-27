@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import tmdb from './tmdb'
 
-axios.defaults.baseURL = "https://api.themoviedb.org/3/movie/";
+axios.defaults.baseURL = "https://api.themoviedb.org/3/";
 
 Vue.use(Vuex)
 

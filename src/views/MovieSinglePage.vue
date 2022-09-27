@@ -1,5 +1,5 @@
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 import Loading from '../components/Loading.vue'
 export default {
     name:"MovieSinglePage",
@@ -20,7 +20,11 @@ export default {
         ...mapActions("tmdb", ["MOVIE_CREDITS"]),
         ...mapActions("tmdb", ["MOVIE_SIMILAR"]),
         ...mapActions("tmdb", ["MOVIE_REVIEWS"]),
+        ...mapMutations("user", ["ADD_FAVOURITE"]),
 
+        addFavourite(data){
+            this.ADD_FAVOURITE(data)
+        },
 
         async getMovieData() {
             this.movie = await this.MOVIE_ID(this.$route.params.id)
@@ -57,8 +61,12 @@ export default {
                     <div>
                         <div class="font-bold flex text-5xl mb-4">{{movie.original_title}}</div>
                         <div class="mb-2 ">{{movie.overview}}</div>
-                        <div>
-                            <a class="flex mb-8 underline underline-offset-1 " :href="movie.homepage">WebSite</a>
+                        <div class="flex justify-between mb-8">
+                            <a class="flex underline underline-offset-1 " :href="movie.homepage">WebSite</a>
+                            <button
+                            class="border rounded p-2 bg-slate-500"
+                            @click="addFavourite(movie)"
+                            >Favourite</button>
                         </div>
                         <div class="mt-4 flex" v-for="genre in movie.genres" :key="genre.id">
                             <div class="border-2 border-slate-700 bg-slate-500 rounded px-2">{{genre.name}}</div>

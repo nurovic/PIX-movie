@@ -30,7 +30,6 @@ export default {
     <div v-for="movie in movies" :key="movie.id">
       <MovieListItem :movieList={movie} />
     </div>
-
   </div>
 </template>
 

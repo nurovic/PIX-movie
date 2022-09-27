@@ -19,7 +19,6 @@
 export default {
     props: ['movieList'],
     mounted() {
-   console.log(this.movieList)
   }
 }
 </script>

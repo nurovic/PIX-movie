@@ -66,7 +66,7 @@ export default {
                             <button
                             class="border rounded p-2 bg-slate-500"
                             @click="addFavourite(movie)"
-                            >Favourite</button>
+                            >Add Favourite</button>
                         </div>
                         <div class="mt-4 flex" v-for="genre in movie.genres" :key="genre.id">
                             <div class="border-2 border-slate-700 bg-slate-500 rounded px-2">{{genre.name}}</div>

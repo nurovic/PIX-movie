@@ -17,16 +17,14 @@ export default {
     }
   },  
   methods: {
-    ...mapActions("tmdb", ["FETCH_POPULAR_MOVIE"]),
+    ...mapActions("tmdb", ["fetchPopularMovie"]),
   },
   computed:{
     ...mapState("tmdb", ["movies"])
-
   },
   async mounted() {
-    await this.FETCH_POPULAR_MOVIE();
+    await this.fetchPopularMovie();
     this.isLoading = false
-
   },
 }
 </script>

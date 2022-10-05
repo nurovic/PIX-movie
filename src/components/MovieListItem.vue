@@ -18,8 +18,7 @@
 <script>
 export default {
     props: ['movieList'],
-    mounted() {
-  }
+
 }
 </script>
 

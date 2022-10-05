@@ -3,8 +3,6 @@
 import { mapActions } from 'vuex';
 export default {
     name:"search",
-    components: {
-    },
     data() {
         return {
             searched: [],
@@ -13,7 +11,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions("tmdb", ["MOVIE_SEARCH"]),
+        ...mapActions("tmdb", ["movieSearch"]),
         
         getMovie(id){
             this.$router.push(`/movie/${id}`)
@@ -21,17 +19,17 @@ export default {
             this.search = ""
         },
 
-        debounceSearch() {
+        getMovieSearch() {
             this.showSearchResult = true
             this.fetchSearch(this.search)
-            if (this.search === 0) {
+            if (this.search == 0) {
                 return this.showSearchResult = false
             }
         },
 
         async fetchSearch(search) {
             try {
-                this.searched = await this.MOVIE_SEARCH(search)
+                this.searched = await this.movieSearch(search)
             } catch (error) {
                 console.log(error)
             }
@@ -44,10 +42,7 @@ export default {
 
 <template>
     <div>
-        <input class="border-4 w-56 h-8 rounded-full" @input="debounceSearch" v-model="search" type="text" placeholder="Search Movie...">
-        <div>
-            <Loading />
-        </div>
+        <input class="border-4 w-56 h-8 rounded-full" @input="getMovieSearch" v-model="search" type="text" placeholder="Search Movie...">
         <div>
             <ul class="absolute z-20 mt-2 overflow-y-auto h-96" v-if="showSearchResult">
                 <li v-for="movie in searched" :key="movie.id">
